@@ -1,5 +1,5 @@
 # Rams 2204 GitHub Repository
-This repository contains the base code for the robot in Kotlin. This project is already pre-configured for VSCode and [IntelliJ with the FRC Plugin](#IntelliJ with FRC Plugin).
+This repository contains the base code for the robot in Kotlin. This project is already pre-configured for VSCode and IntelliJ with the FRC Plugin.
 You can find season code on the branches named `season-xxxx`, `xxxx` being the year.
 
 
