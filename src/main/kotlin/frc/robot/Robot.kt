@@ -12,18 +12,11 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
  */
 class Robot : TimedRobot() {
 
-    private var autonomousCommand: Command? = null
-    private var robotContainer: RobotContainer? = null
-
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
-    override fun robotInit() {
-        // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-        // autonomous chooser on the dashboard.
-        robotContainer = RobotContainer()
-    }
+    override fun robotInit() {}
 
     /**
      * This function is called every robot packet, no matter the mode. Use this for items like
@@ -34,11 +27,6 @@ class Robot : TimedRobot() {
      * LiveWindow and SmartDashboard integrated updating.
      */
     override fun robotPeriodic() {
-        // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
-        // commands, running already-scheduled commands, removing finished or interrupted commands,
-        // and running subsystem periodic() methods.  This must be called from the robot's periodic
-        // block in order for anything in the Command-based framework to work.
-        CommandScheduler.getInstance().run()
     }
 
     /**
@@ -52,15 +40,9 @@ class Robot : TimedRobot() {
     override fun disabledPeriodic() {}
 
     /**
-     * This autonomous runs the autonomous command selected by your [RobotContainer] class.
+     * This function is called once autonomous is enabled.
      */
-    override fun autonomousInit() {
-        autonomousCommand = robotContainer?.autonomousCommand
-
-        // Schedule the autonomous command (example)
-        // Note the Kotlin safe-call(?.), this ensures autonomousCommand is not null before scheduling it
-        autonomousCommand?.schedule()
-    }
+    override fun autonomousInit() {}
 
     /**
      * This function is called periodically during autonomous.
@@ -70,14 +52,7 @@ class Robot : TimedRobot() {
     /**
      * This function is called once when teleop is enabled.
      */
-    override fun teleopInit() {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        // Note the Kotlin safe-call(?.), this ensures autonomousCommand is not null before cancelling it
-        autonomousCommand?.cancel()
-    }
+    override fun teleopInit() {}
 
     /**
      * This function is called periodically during operator control.
@@ -87,10 +62,7 @@ class Robot : TimedRobot() {
     /**
      * This function is called once when test mode is enabled.
      */
-    override fun testInit() {
-        // Cancels all running commands at the start of test mode.
-        CommandScheduler.getInstance().cancelAll()
-    }
+    override fun testInit() {}
 
     /**
      * This function is called periodically during test mode.
