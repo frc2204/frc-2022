@@ -3,6 +3,7 @@ package frc.robot
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj2.command.Command
 import edu.wpi.first.wpilibj2.command.CommandScheduler
+import frc.robot.subsystems.Limelight
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,12 +23,10 @@ class Robot : TimedRobot() {
      * This function is called every robot packet, no matter the mode. Use this for items like
      * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
      *
-     *
      * This runs after the mode specific periodic functions, but before
      * LiveWindow and SmartDashboard integrated updating.
      */
-    override fun robotPeriodic() {
-    }
+    override fun robotPeriodic() {}
 
     /**
      * This function is called once each time the robot enters Disabled mode.
@@ -52,12 +51,16 @@ class Robot : TimedRobot() {
     /**
      * This function is called once when teleop is enabled.
      */
-    override fun teleopInit() {}
+    override fun teleopInit() {
+        Limelight.init()
+    }
 
     /**
      * This function is called periodically during operator control.
      */
-    override fun teleopPeriodic() {}
+    override fun teleopPeriodic() {
+        System.out.println("x: ${Limelight.tx}, y: ${Limelight.ty}, a: ${Limelight.ta}")
+    }
 
     /**
      * This function is called once when test mode is enabled.

@@ -11,5 +11,9 @@ package frc.robot
  */
 object Constants {
 
+    val limelightDefaultX = 0.0
+    val limelightDefaultY = 0.0
+    val limelightDefaultA = 0.0
+
 }
 
