@@ -10,4 +10,6 @@ object Controls {
     val moveX get() = moveJoystick.x
     val moveY get() = moveJoystick.y
 
+    val isShooting get() = moveJoystick.triggerPressed
+
 }

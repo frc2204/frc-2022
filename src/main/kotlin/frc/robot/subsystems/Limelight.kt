@@ -1,7 +1,5 @@
 package frc.robot.subsystems
 
-import edu.wpi.first.networktables.NetworkTable
-import edu.wpi.first.networktables.NetworkTableEntry
 import edu.wpi.first.networktables.NetworkTableInstance
 import frc.robot.Constants
 
@@ -15,6 +13,5 @@ object Limelight {
     val tx get() = _tx.getDouble(Constants.limelightDefaultX)
     val ty get() = _ty.getDouble(Constants.limelightDefaultY)
     val ta get() = _ta.getDouble(Constants.limelightDefaultA)
-
 
 }

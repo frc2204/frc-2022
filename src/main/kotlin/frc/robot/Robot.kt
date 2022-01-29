@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
 import frc.robot.subsystems.Controls
 import frc.robot.subsystems.Drive
 import frc.robot.subsystems.Limelight
+import frc.robot.subsystems.Shooter
 import javax.naming.ldap.Control
+import kotlin.math.abs
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -61,8 +63,14 @@ class Robot : TimedRobot() {
      */
     override fun teleopPeriodic() {
 
-        Drive.arcadeDrive(Controls.moveY, Controls.moveY)
-
+        if (Controls.isShooting)  {
+            Shooter.shoot()
+            if (abs(Limelight.tx) > 1) {
+                // todo
+            }
+        } else {
+            Drive.arcadeDrive(Controls.moveY, Controls.moveX)
+        }
     }
 
     /**
