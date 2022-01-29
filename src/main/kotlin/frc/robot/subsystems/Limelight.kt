@@ -7,19 +7,14 @@ import frc.robot.Constants
 
 object Limelight {
 
-    private lateinit var _tx: NetworkTableEntry
-    private lateinit var _ty: NetworkTableEntry
-    private lateinit var _ta: NetworkTableEntry
+    private val networkTable = NetworkTableInstance.getDefault().getTable("limelight")
+    private val _tx = networkTable.getEntry("tx")
+    private val _ty = networkTable.getEntry("ty")
+    private val _ta = networkTable.getEntry("ta")
 
     val tx get() = _tx.getDouble(Constants.limelightDefaultX)
     val ty get() = _ty.getDouble(Constants.limelightDefaultY)
     val ta get() = _ta.getDouble(Constants.limelightDefaultA)
 
-    fun init() {
-        val networkTable = NetworkTableInstance.getDefault().getTable("limelight")
-        _tx = networkTable.getEntry("tx")
-        _ty = networkTable.getEntry("ty")
-        _ta = networkTable.getEntry("ta")
-    }
 
 }
