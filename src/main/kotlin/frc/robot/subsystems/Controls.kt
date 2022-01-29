@@ -1,7 +1,7 @@
 package frc.robot.subsystems
 
 import edu.wpi.first.wpilibj.Joystick
-import frc.robot.Constants
+import frc.robot.resources.Constants
 
 object Controls {
 
@@ -10,6 +10,6 @@ object Controls {
     val moveX get() = moveJoystick.x
     val moveY get() = moveJoystick.y
 
-    val isShooting get() = moveJoystick.triggerPressed
+    val isShooting get() = moveJoystick.getRawButton(1)
 
 }

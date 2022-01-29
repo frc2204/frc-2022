@@ -64,9 +64,12 @@ class Robot : TimedRobot() {
     override fun teleopPeriodic() {
 
         if (Controls.isShooting)  {
+            println("Flywheel Spinning")
             Shooter.shoot()
             if (abs(Limelight.tx) > 1) {
-                // todo
+
+            } else {
+                println("Target not detected. Scheduling no correction")
             }
         } else {
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
