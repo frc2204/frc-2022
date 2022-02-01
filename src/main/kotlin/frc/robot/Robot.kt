@@ -62,6 +62,7 @@ class Robot : TimedRobot() {
      */
     override fun teleopPeriodic() {
 
+        var log = false
         var printOutString = "[DEBUG] [${LocalDateTime.now()}] "
 
         if (Controls.isShooting)  {
@@ -69,13 +70,14 @@ class Robot : TimedRobot() {
             correction.first?.let {
                 Drive.arcadeDrive(it.amount, correction.second.toDouble())
                 printOutString += "[$it correction in the ${correction.second} direction] "
+                log = true
             }
             Shooter.shoot()
         } else {
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
         }
 
-        println(printOutString)
+         if (log) println(printOutString)
     }
 
     /**
