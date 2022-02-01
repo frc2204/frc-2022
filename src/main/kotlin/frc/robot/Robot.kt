@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj2.command.Command
 import edu.wpi.first.wpilibj2.command.CommandScheduler
 import frc.robot.subsystems.*
+import java.time.Instant
+import java.time.LocalDateTime
 import javax.naming.ldap.Control
 import kotlin.math.abs
 
@@ -60,12 +62,20 @@ class Robot : TimedRobot() {
      */
     override fun teleopPeriodic() {
 
+        var printOutString = "[DEBUG] [${LocalDateTime.now()}] "
+
         if (Controls.isShooting)  {
-            println(Alignment.calculateHorizontalCorrection())
+            val correction = Alignment.calculateHorizontalCorrection()
+            correction.first?.let {
+                Drive.arcadeDrive(it.amount, correction.second.toDouble())
+                printOutString += "[$it correction in the ${correction.second} direction] "
+            }
             Shooter.shoot()
         } else {
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
         }
+
+        println(printOutString)
     }
 
     /**
