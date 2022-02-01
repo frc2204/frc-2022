@@ -68,8 +68,9 @@ class Robot : TimedRobot() {
         if (Controls.isShooting)  {
             val correction = Alignment.calculateHorizontalCorrection()
             correction.first?.let {
-                Drive.tankDrive(- it.amount * correction.second, it.amount * correction.second)
-                printOutString += "[$it correction in the ${correction.second} direction] "
+                val calculatedCorrection = it.amount * correction.second
+                Drive.tankDrive(-calculatedCorrection, calculatedCorrection)
+                printOutString += "[$it correction as $calculatedCorrection] "
                 log = true
             }
             Shooter.shoot()
