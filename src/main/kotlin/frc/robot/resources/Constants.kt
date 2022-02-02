@@ -18,6 +18,8 @@ object Constants {
     const val leftSpark = 0
     const val rightSpark = 1
 
+    val shooterXMultiplier = 1/0.27
+
     const val joystickDeadZone = 0.05
 
     const val moveJoystick = 1

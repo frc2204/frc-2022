@@ -1,8 +1,10 @@
 package frc.robot
 
+import com.sun.tools.internal.jxc.ap.Const
 import edu.wpi.first.wpilibj.TimedRobot
 import edu.wpi.first.wpilibj2.command.Command
 import edu.wpi.first.wpilibj2.command.CommandScheduler
+import frc.robot.resources.Constants
 import frc.robot.subsystems.*
 import java.time.Instant
 import java.time.LocalDateTime
@@ -66,13 +68,9 @@ class Robot : TimedRobot() {
         var printOutString = "[DEBUG] [${LocalDateTime.now()}] "
 
         if (Controls.isShooting)  {
-            val correction = Alignment.calculateHorizontalCorrection()
-            correction.first?.let {
-                val calculatedCorrection = it.amount * correction.second
-                Drive.tankDrive(-calculatedCorrection, calculatedCorrection)
-                printOutString += "[$it correction as $calculatedCorrection] "
-                log = true
-            }
+            val correction = Limelight.tx/100 * Constants.shooterXMultiplier
+            printOutString += "[SHOOT - TURNING BY $correction]"
+            Drive.arcadeDrive(0.0, -correction)
             Shooter.shoot()
         } else {
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
