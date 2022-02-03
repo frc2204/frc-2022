@@ -68,10 +68,11 @@ class Robot : TimedRobot() {
         var printOutString = "[DEBUG] [${LocalDateTime.now()}] "
 
         if (Controls.isShooting)  {
-            val correction = Limelight.tx/100 * Constants.shooterXMultiplier
-            printOutString += "[SHOOT - TURNING BY $correction]"
-            Drive.arcadeDrive(0.0, -correction)
-            Shooter.shoot()
+            val tx = Limelight.tx
+            val absPower = if (abs(tx) < 10.0) 0.5 else 1.0
+            val power = absPower * if (tx >= 0) 1 else -1
+
+            Drive.arcadeDrive(0.0, power)
         } else {
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
         }
