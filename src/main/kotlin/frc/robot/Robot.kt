@@ -71,6 +71,7 @@ class Robot : TimedRobot() {
                 val calculatedCorrection = it.amount * correction.second * 1.4
                 Drive.arcadeDrive(0.0, calculatedCorrection)
                 printOutString += "[$it correction as $calculatedCorrection] "
+
                 log = true
             }
             Shooter.shoot()
