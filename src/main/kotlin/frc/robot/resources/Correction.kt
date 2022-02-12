@@ -2,8 +2,9 @@ package frc.robot.resources
 
 enum class Correction(val amount: Double) {
 
-    Minor(0.35),
-    Mediocre(0.55),
-    Major(0.75)
+    Push(0.35),
+    Minor(0.65),
+    Mediocre(0.75),
+    Major(1.0)
 
 }

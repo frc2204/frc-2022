@@ -1,21 +1,18 @@
 package frc.robot
 
 import edu.wpi.first.wpilibj.TimedRobot
-import edu.wpi.first.wpilibj2.command.Command
-import edu.wpi.first.wpilibj2.command.CommandScheduler
+import frc.robot.resources.Constants
 import frc.robot.subsystems.*
-import java.time.Instant
-import java.time.LocalDateTime
-import javax.naming.ldap.Control
-import kotlin.math.abs
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
+ *
+ * Note that [TimedRobot] can be constructed with the default [TimedRobot.kDefaultPeriod], but in this case we use [Constants.robotPeriodUpdate]
  */
-class Robot : TimedRobot() {
+class Robot : TimedRobot(Constants.robotPeriodUpdate) {
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -45,12 +42,16 @@ class Robot : TimedRobot() {
     /**
      * This function is called once autonomous is enabled.
      */
-    override fun autonomousInit() {}
+    override fun autonomousInit() {
+        KTimer.startAutomationTimer()
+    }
 
     /**
      * This function is called periodically during autonomous.
      */
-    override fun autonomousPeriodic() {}
+    override fun autonomousPeriodic() {
+        val elapsed = KTimer.elapsed
+    }
 
     /**
      * This function is called once when teleop is enabled.
@@ -62,26 +63,20 @@ class Robot : TimedRobot() {
      */
     override fun teleopPeriodic() {
 
-        var log = false
-        var printOutString = "[DEBUG] [${LocalDateTime.now()}] "
+        val correction = Alignment.calculateHorizontalCorrection()
+        Dashboard.updateDashboard(correction)
 
         if (Controls.isShooting)  {
-            val correction = Alignment.calculateHorizontalCorrection()
             correction.first?.let {
-                val calculatedCorrection = it.amount * correction.second * 1.4
+                val calculatedCorrection = it.amount * correction.second // Second determines polarity
                 Drive.arcadeDrive(0.0, calculatedCorrection)
-                printOutString += "[$it correction as $calculatedCorrection] "
-
-                log = true
             }
             Shooter.shoot()
         } else {
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
         }
-
-         if (log) println(printOutString)
     }
-
+    
     /**
      * This function is called once when test mode is enabled.
      */
