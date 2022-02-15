@@ -17,4 +17,5 @@ object Main {
     fun main(args: Array<String>) {
         RobotBase.startRobot { Robot() }
     }
+
 }

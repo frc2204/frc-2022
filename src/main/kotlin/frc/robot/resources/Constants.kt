@@ -1,4 +1,4 @@
-package frc.robot
+package frc.robot.resources
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -10,6 +10,19 @@ package frc.robot
  *
  */
 object Constants {
+
+    const val robotPeriodUpdate = 0.011 // In theory, this is around 90fps.
+
+    const val limelightDefaultX = 0.0
+    const val limelightDefaultY = 0.0
+    const val limelightDefaultA = 0.0
+
+    const val leftSpark = 0
+    const val rightSpark = 1
+
+    const val joystickDeadZone = 0.05
+
+    const val moveJoystick = 1
 
 }
 
