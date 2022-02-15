@@ -1,4 +1,5 @@
 # Rams 2204 GitHub Repository
+[![Java CI with Gradle](https://github.com/twangodev/2204-frc-kotlin/actions/workflows/gradle.yml/badge.svg?branch=base-code)](https://github.com/twangodev/2204-frc-kotlin/actions/workflows/gradle.yml)
 This repository contains the base code for the robot in Kotlin. This project is already pre-configured for VSCode and IntelliJ with the FRC Plugin.
 You can find season code on the branches named `season-xxxx`, `xxxx` being the year.
 
