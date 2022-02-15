@@ -19,7 +19,7 @@ jobs:
     # Checks-out repo to $GITHUB_WROKSPACE
     - uses: actions/checkout@v2
     
-    - name: Grant execute permission for gradew
+    - name: Grant execute permission for graldew
       run: chmod +x gradlew
     
     - name: Compile and run tests
