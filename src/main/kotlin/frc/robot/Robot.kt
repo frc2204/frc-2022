@@ -42,16 +42,12 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
     /**
      * This function is called once autonomous is enabled.
      */
-    override fun autonomousInit() {
-        KTimer.startAutomationTimer()
-    }
+    override fun autonomousInit() {}
 
     /**
      * This function is called periodically during autonomous.
      */
-    override fun autonomousPeriodic() {
-        val elapsed = KTimer.elapsed
-    }
+    override fun autonomousPeriodic() {}
 
     /**
      * This function is called once when teleop is enabled.
@@ -61,21 +57,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
     /**
      * This function is called periodically during operator control.
      */
-    override fun teleopPeriodic() {
-
-        val correction = Alignment.calculateHorizontalCorrection()
-        Dashboard.updateDashboard(correction)
-
-        if (Controls.isShooting)  {
-            correction.first?.let {
-                val calculatedCorrection = it.amount * correction.second // Second determines polarity
-                Drive.arcadeDrive(0.0, calculatedCorrection)
-            }
-            Shooter.shoot()
-        } else {
-            Drive.arcadeDrive(Controls.moveY, Controls.moveX)
-        }
-    }
+    override fun teleopPeriodic() {}
     
     /**
      * This function is called once when test mode is enabled.
