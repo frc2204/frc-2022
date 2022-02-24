@@ -7,6 +7,7 @@ import frc.robot.resources.Constants
 object Drive {
 
     private val leftSpark = Spark(Constants.leftSpark)
+
     private val rightSpark = Spark(Constants.rightSpark)
 
     private val differentialDrive = DifferentialDrive(leftSpark, rightSpark)
@@ -24,8 +25,5 @@ object Drive {
     fun arcadeDrive(throttle: Double, turn: Double) {
         differentialDrive.arcadeDrive(throttle, turn)
     }
-
-    fun tankDrive(left: Double, right: Double) {
-        differentialDrive.tankDrive(left, right)
-    }
+    
 }
