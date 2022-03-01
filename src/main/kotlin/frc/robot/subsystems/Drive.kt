@@ -6,19 +6,11 @@ import frc.robot.resources.Constants
 
 object Drive {
 
-    private val leftSpark = Spark(Constants.leftSpark)
+    private val leftSpark = Spark(Constants.leftDriveSpark)
 
-    private val rightSpark = Spark(Constants.rightSpark)
+    private val rightSpark = Spark(Constants.rightDriveSpark)
 
     private val differentialDrive = DifferentialDrive(leftSpark, rightSpark)
-
-    private val Double.withinDeadZone: Boolean get() = this < Constants.joystickDeadZone
-
-    fun drive(x: Double, y: Double) {
-        val actualX = if (!x.withinDeadZone) x else 0.0
-        val actualY = if (!y.withinDeadZone) y else 0.0
-        arcadeDrive(Pair(actualY, actualX))
-    }
 
     private fun arcadeDrive(pair: Pair<Double, Double>) = arcadeDrive(pair.first, pair.second)
 

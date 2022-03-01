@@ -17,10 +17,9 @@ object Constants {
     const val limelightDefaultY = 0.0
     const val limelightDefaultA = 0.0
 
-    const val leftSpark = 0
-    const val rightSpark = 1
-
-    const val joystickDeadZone = 0.05
+    const val leftDriveSpark = 0
+    const val rightDriveSpark = 1
+    const val shooterSparkMax = 2
 
     const val moveJoystick = 1
 

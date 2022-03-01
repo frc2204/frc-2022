@@ -1,9 +1,18 @@
 package frc.robot.subsystems
 
+import edu.wpi.first.wpilibj.PWMSparkMax
+import frc.robot.resources.Constants
+
 object Shooter {
 
-    fun shoot() {
+    val motor = PWMSparkMax(Constants.shooterSparkMax)
 
+    fun detectPower() {
+
+    }
+
+    fun shoot() {
+        motor.set(1.0)
     }
 
 }
