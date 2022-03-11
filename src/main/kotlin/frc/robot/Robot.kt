@@ -2,6 +2,7 @@ package frc.robot
 
 import edu.wpi.first.wpilibj.TimedRobot
 import frc.robot.resources.Constants
+import frc.robot.resources.nullConnectionPair
 import frc.robot.subsystems.*
 
 /**
@@ -18,7 +19,10 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
      */
-    override fun robotInit() {}
+    override fun robotInit() {
+        // Initiate dashboard
+        Dashboard.updateDashboard(nullConnectionPair)
+    }
 
     /**
      * This function is called every robot packet, no matter the mode. Use this for items like
@@ -50,6 +54,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      * This function is called periodically during autonomous.
      */
     override fun autonomousPeriodic() {
+        Dashboard.updateDashboard(nullConnectionPair)
         val elapsed = KTimer.elapsed
     }
 

@@ -17,5 +17,9 @@ object Drive {
     fun arcadeDrive(throttle: Double, turn: Double) {
         differentialDrive.arcadeDrive(throttle, turn)
     }
+
+    fun tankDrive(leftPower: Double, rightPower: Double) {
+        differentialDrive.tankDrive(-rightPower, -leftPower)
+    }
     
 }

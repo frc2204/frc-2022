@@ -12,7 +12,12 @@ object Shooter {
     }
 
     fun shoot() {
-        motor.set(-1.0)
+        //motor.set()
     }
+
+    fun stop() {
+        motor.set(0.0)
+    }
+
 
 }
