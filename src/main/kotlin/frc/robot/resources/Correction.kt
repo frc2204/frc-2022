@@ -8,3 +8,5 @@ enum class Correction(val amount: Double) {
     Major(1.0)
 
 }
+
+val nullConnectionPair = Pair(null, 0)
