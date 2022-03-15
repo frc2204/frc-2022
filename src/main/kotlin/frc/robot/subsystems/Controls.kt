@@ -12,4 +12,7 @@ object Controls {
 
     val isShooting get() = moveJoystick.getRawButton(1)
 
+    val isClimberUp get() = moveJoystick.getRawButton(6)
+    val isClimberDown get() = moveJoystick.getRawButton(7)
+
 }

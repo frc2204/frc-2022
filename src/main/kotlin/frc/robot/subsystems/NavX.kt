@@ -5,23 +5,19 @@ import edu.wpi.first.wpilibj.SPI
 
 val navX = AHRS(SPI.Port.kMXP)
 
-private fun turn(power: Double) {
+private fun tankTurn(power: Double) {
     Drive.tankDrive(power, -power)
 }
 
-fun getAllowedRange(angle: Double) = (angle - 1)..(angle + 1)
-
-fun leftTurn(angle: Double): Boolean {
-    val actualAngle = 360 - angle
-    return if (actualAngle !in getAllowedRange(actualAngle)) {
-        turn(-0.7)
-        false
-    } else true
-}
-
 fun rightTurn(angle: Double): Boolean {
-    return if (angle !in getAllowedRange(angle)) {
-       turn(0.7)
-        false
-    } else true
+    when(angle - navX.angle) {
+        in -360.0..-0.1 -> tankTurn( -0.62)
+        in -0.1..0.1 -> {
+            tankTurn(0.0)
+            return true
+        }
+        in 0.1..20.0 -> tankTurn( 0.6)
+        else -> tankTurn(0.8)
+    }
+    return false
 }

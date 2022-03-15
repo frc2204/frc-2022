@@ -48,6 +48,9 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      */
     override fun autonomousInit() {
         KTimer.startAutomationTimer()
+        navX.reset()
+        navX.resetDisplacement()
+        Autonomous.stepCounter = 0
     }
 
     /**
@@ -56,6 +59,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
     override fun autonomousPeriodic() {
         Dashboard.updateDashboard(nullConnectionPair)
         val elapsed = KTimer.elapsed
+        Autonomous.midShootPath(elapsed.inMilliseconds)
     }
 
     /**
@@ -78,8 +82,13 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
             }
             Shooter.shoot()
         } else {
+            Shooter.stop()
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
         }
+
+        if (Controls.isClimberUp) Climber.up()
+        else if (Controls.isClimberDown) Climber.down()
+        else Climber.stop()
     }
     
     /**

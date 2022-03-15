@@ -20,6 +20,7 @@ object Constants {
     const val leftDriveSpark = 0
     const val rightDriveSpark = 1
     const val shooterSparkMax = 2
+    const val climberSpark = 3
 
     const val moveJoystick = 0
 
