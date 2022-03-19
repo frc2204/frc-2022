@@ -75,6 +75,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
         val correction = Alignment.calculateHorizontalCorrection()
         Dashboard.updateDashboard(correction)
 
+        // Drive and Shoot
         if (Controls.isShooting)  {
             correction.first?.let {
                 val calculatedCorrection = it.amount * correction.second // Second determines polarity
@@ -82,13 +83,22 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
             }
             Shooter.shoot()
         } else {
-            Shooter.stop()
+            if (Controls.isShooterEject) Shooter.eject()
+            else Shooter.stop()
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
         }
 
-        if (Controls.isClimberUp) Climber.up()
-        else if (Controls.isClimberDown) Climber.down()
-        else Climber.stop()
+        if (Controls.isIntaking) Intake.intake()
+        else if (Controls.isReverseIntaking) Intake.reverse()
+        else Intake.stop()
+
+        if (Controls.isShooterIntaking) Shooter.intake()
+        else Shooter.intakeStop()
+
+        if (Controls.isWinchUp) Winch.up()
+        else if (Controls.isWinchDown) Winch.down()
+        else Winch.stop()
+
     }
     
     /**

@@ -11,8 +11,12 @@ object Controls {
     val moveY get() = moveJoystick.y
 
     val isShooting get() = moveJoystick.getRawButton(1)
+    val isIntaking get() = moveJoystick.getRawButton(2)
+    val isShooterIntaking get() = moveJoystick.getRawButton(3)
+    val isWinchDown get() = moveJoystick.getRawButton(4)
+    val isWinchUp get() = moveJoystick.getRawButton(5)
 
-    val isClimberUp get() = moveJoystick.getRawButton(6)
-    val isClimberDown get() = moveJoystick.getRawButton(7)
+    val isReverseIntaking get() = moveJoystick.getRawButton(6)
+    val isShooterEject get() = moveJoystick.getRawButton(7)
 
 }

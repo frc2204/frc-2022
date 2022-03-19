@@ -17,10 +17,12 @@ object Constants {
     const val limelightDefaultY = 0.0
     const val limelightDefaultA = 0.0
 
-    const val leftDriveSpark = 0
-    const val rightDriveSpark = 1
-    const val shooterSparkMax = 2
-    const val climberSpark = 3
+    const val leftDriveSparkPort = 0
+    const val rightDriveSparkPort = 1
+    const val shooterSparkMaxPort = 2
+    const val intakeVictorSPPort = 3
+    const val winchVictorSPPort = 4
+    const val shooterIntakePort = 5
 
     const val moveJoystick = 0
 

@@ -6,9 +6,9 @@ import frc.robot.resources.Constants
 
 object Drive {
 
-    private val leftSpark = Spark(Constants.leftDriveSpark)
+    private val leftSpark = Spark(Constants.leftDriveSparkPort)
 
-    private val rightSpark = Spark(Constants.rightDriveSpark)
+    private val rightSpark = Spark(Constants.rightDriveSparkPort)
 
     private val differentialDrive = DifferentialDrive(leftSpark, rightSpark)
 
