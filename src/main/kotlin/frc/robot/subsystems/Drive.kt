@@ -12,14 +12,16 @@ object Drive {
 
     private val differentialDrive = DifferentialDrive(leftSpark, rightSpark)
 
-    private fun arcadeDrive(pair: Pair<Double, Double>) = arcadeDrive(pair.first, pair.second)
-
     fun arcadeDrive(throttle: Double, turn: Double) {
         differentialDrive.arcadeDrive(throttle, turn)
     }
 
     fun tankDrive(leftPower: Double, rightPower: Double) {
         differentialDrive.tankDrive(-rightPower, -leftPower)
+    }
+
+    fun stop() {
+        tankDrive(0.0, 0.0)
     }
     
 }

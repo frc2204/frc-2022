@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.TimedRobot
 import frc.robot.resources.Constants
 import frc.robot.resources.nullConnectionPair
 import frc.robot.subsystems.*
+import lib.autonomous.AutonomousManager
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -14,6 +15,8 @@ import frc.robot.subsystems.*
  * Note that [TimedRobot] can be constructed with the default [TimedRobot.kDefaultPeriod], but in this case we use [Constants.robotPeriodUpdate]
  */
 class Robot : TimedRobot(Constants.robotPeriodUpdate) {
+
+    private var autonomousManager = AutonomousManager(Autonomous.midShootPath)
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -47,10 +50,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      * This function is called once autonomous is enabled.
      */
     override fun autonomousInit() {
-        KTimer.startAutomationTimer()
-        navX.reset()
-        navX.resetDisplacement()
-        Autonomous.stepCounter = 0
+        autonomousManager.start()
     }
 
     /**
@@ -58,8 +58,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      */
     override fun autonomousPeriodic() {
         Dashboard.updateDashboard(nullConnectionPair)
-        val elapsed = KTimer.elapsed
-        Autonomous.midShootPath(elapsed.inMilliseconds)
+        autonomousManager.execute()
     }
 
     /**
