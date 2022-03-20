@@ -1,5 +1,6 @@
 package frc.robot
 
+import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj.TimedRobot
 import frc.robot.resources.Constants
 import frc.robot.resources.nullConnectionPair
@@ -66,6 +67,8 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      * This function is called once when teleop is enabled.
      */
     override fun teleopInit() {}
+
+    private val joy = Joystick(2)
 
     /**
      * This function is called periodically during operator control.

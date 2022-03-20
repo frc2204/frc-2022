@@ -6,7 +6,7 @@ import frc.robot.resources.Constants
 
 object Shooter {
 
-    private val motor = PWMSparkMax(Constants.shooterSparkMaxPort)
+    val motor = PWMSparkMax(Constants.shooterSparkMaxPort)
     private val intake = VictorSP(Constants.shooterIntakePort)
 
     fun intake() {
@@ -14,19 +14,19 @@ object Shooter {
     }
 
     fun intakeStop() {
-        intake.set(0.0)
+        intake.stopMotor()
     }
 
     fun shoot() {
-        motor.set(1.0)
+        motor.set(-1.0)
     }
 
     fun eject() {
-        motor.set(0.4)
+        motor.set(-0.4)
     }
 
     fun stop() {
-        motor.set(0.0)
+        motor.stopMotor()
     }
 
 

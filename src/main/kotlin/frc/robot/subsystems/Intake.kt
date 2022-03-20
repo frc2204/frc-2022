@@ -8,7 +8,7 @@ object Intake {
     private val motor = VictorSP(Constants.intakeVictorSPPort)
 
     fun intake() {
-        motor.set(0.7)
+        motor.set(0.5)
     }
 
     fun reverse() {
@@ -16,7 +16,7 @@ object Intake {
     }
 
     fun stop() {
-        motor.set(0.0)
+        motor.stopMotor()
     }
 
 }

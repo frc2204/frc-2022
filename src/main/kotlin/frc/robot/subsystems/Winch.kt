@@ -6,18 +6,17 @@ import frc.robot.resources.Constants
 object Winch {
 
     private val motor = VictorSP(Constants.winchVictorSPPort)
-    private const val power = 0.6
 
     fun up() {
-        motor.set(power)
+        motor.set(0.4)
     }
 
     fun down() {
-        motor.set(-power)
+        motor.set(-0.4)
     }
 
     fun stop() {
-        motor.set(0.0)
+        motor.stopMotor()
     }
 
 }

@@ -15,11 +15,11 @@ object Drive {
     private fun arcadeDrive(pair: Pair<Double, Double>) = arcadeDrive(pair.first, pair.second)
 
     fun arcadeDrive(throttle: Double, turn: Double) {
-        differentialDrive.arcadeDrive(throttle, turn)
+        differentialDrive.arcadeDrive(-throttle, turn)
     }
 
     fun tankDrive(leftPower: Double, rightPower: Double) {
-        differentialDrive.tankDrive(-rightPower, -leftPower)
+        differentialDrive.tankDrive(rightPower, leftPower)
     }
     
 }
