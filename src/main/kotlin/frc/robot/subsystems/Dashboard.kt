@@ -16,6 +16,8 @@ object Dashboard {
         SmartDashboard.putBoolean("Shooting", Controls.isShooting)
         SmartDashboard.putBoolean("Target Detected", correction.first != null)
 
+        SmartDashboard.putBoolean("Smart Intake", Winch.smartIntake)
+
         //Joysticks
         SmartDashboard.putNumber("Controls X", Controls.moveX)
         SmartDashboard.putNumber("Controls Y", Controls.moveY)

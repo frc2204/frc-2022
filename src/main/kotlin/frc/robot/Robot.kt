@@ -2,7 +2,7 @@ package frc.robot
 
 import edu.wpi.first.wpilibj.TimedRobot
 import frc.robot.resources.Constants
-import frc.robot.resources.nullConnectionPair
+import frc.robot.resources.Correction
 import frc.robot.subsystems.*
 
 /**
@@ -21,7 +21,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      */
     override fun robotInit() {
         // Initiate dashboard
-        Dashboard.updateDashboard(nullConnectionPair)
+        Dashboard.updateDashboard(Correction.nullConnectionPair)
     }
 
     /**
@@ -57,7 +57,7 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
      * This function is called periodically during autonomous.
      */
     override fun autonomousPeriodic() {
-        Dashboard.updateDashboard(nullConnectionPair)
+        Dashboard.updateDashboard(Correction.nullConnectionPair)
         val elapsed = KTimer.elapsed
         Autonomous.midShootPath(elapsed.inMilliseconds)
     }
@@ -76,28 +76,40 @@ class Robot : TimedRobot(Constants.robotPeriodUpdate) {
         Dashboard.updateDashboard(correction)
 
         // Drive and Shoot
-        if (Controls.isShooting)  {
+        if (Controls.isLLAim)  {
             correction.first?.let {
                 val calculatedCorrection = it.amount * correction.second // Second determines polarity
                 Drive.arcadeDrive(0.0, calculatedCorrection)
             }
-            Shooter.shoot()
         } else {
-            if (Controls.isShooterEject) Shooter.eject()
-            else Shooter.stop()
             Drive.arcadeDrive(Controls.moveY, Controls.moveX)
         }
 
-        if (Controls.isIntaking) Intake.intake()
-        else if (Controls.isReverseIntaking) Intake.reverse()
-        else Intake.stop()
+        if (Controls.isShooting) Shooter.shoot()
+        else if (Controls.isShooterEject) Shooter.eject()
+        else Shooter.stop()
 
         if (Controls.isShooterIntaking) Shooter.intake()
         else Shooter.intakeStop()
 
-        if (Controls.isWinchUp) Winch.up()
-        else if (Controls.isWinchDown) Winch.down()
-        else Winch.stop()
+        if (Controls.isIntaking) {
+            Intake.intake()
+        } else if(Controls.isReverseIntaking) {
+            Intake.reverse()
+        } else {
+            Intake.stop()
+        }
+
+        if (Winch.smartIntake) {
+            if (Controls.isIntaking || Controls.isReverseIntaking) Winch.smartIntakeLower()
+            else Winch.smartIntakeRaise()
+        } else {
+            if (Controls.isWinchUp) Winch.up()
+            else if (Controls.isWinchDown) Winch.down()
+            else Winch.stop()
+        }
+
+        Winch.smartButtonScan()
 
     }
     

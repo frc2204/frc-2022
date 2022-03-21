@@ -24,7 +24,11 @@ object Constants {
     const val winchVictorSPPort = 4
     const val shooterIntakePort = 5
 
+    const val intakeUpperLSwitch = 0
+    const val intakeLowerLSwitch = 1
+
     const val moveJoystick = 0
+    const val intakeJoystick = 1
 
 }
 

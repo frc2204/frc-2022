@@ -6,17 +6,22 @@ import frc.robot.resources.Constants
 object Controls {
 
     private val moveJoystick = Joystick(Constants.moveJoystick)
+    private val intakeJoystick = Joystick(Constants.intakeJoystick)
 
     val moveX get() = moveJoystick.x
     val moveY get() = moveJoystick.y
 
-    val isShooting get() = moveJoystick.getRawButton(1)
-    val isIntaking get() = moveJoystick.getRawButton(2)
-    val isShooterIntaking get() = moveJoystick.getRawButton(3)
-    val isWinchDown get() = moveJoystick.getRawButton(4)
-    val isWinchUp get() = moveJoystick.getRawButton(5)
+    val isLLAim = moveJoystick.getRawButton(1)
 
-    val isReverseIntaking get() = moveJoystick.getRawButton(6)
-    val isShooterEject get() = moveJoystick.getRawButton(7)
+    val isShooting get() = intakeJoystick.getRawButton(1)
+    val isIntaking get() = intakeJoystick.getRawButton(2)
+    val isShooterIntaking get() = intakeJoystick.getRawButton(3)
+    val isWinchDown get() = intakeJoystick.getRawButton(4)
+    val isWinchUp get() = intakeJoystick.getRawButton(5)
+
+    val isReverseIntaking get() = intakeJoystick.getRawButton(6)
+    val isShooterEject get() = intakeJoystick.getRawButton(7)
+
+    val smartIntakeActivation get() = intakeJoystick.getRawButton(8)
 
 }
